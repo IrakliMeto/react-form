@@ -1,5 +1,7 @@
 .form {
-  max-width: 600px;
+  max-width: 500px;
+  padding: 0 20px;
+  margin-top: 50px;
   width: 100%;
   gap: 30px 0;
   display: flex;
@@ -15,4 +17,74 @@
     appearance: textfield;
     -moz-appearance: textfield;
   }
+
+  &__input-parent {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+  }
+
+  &__inputs-holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 10px;
+
+    & div {
+      max-width: calc(100% / 3 - 20px);
+    }
+  }
+
+  &__label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #21092f;
+  }
+
+  &__input {
+    height: 45px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    color: #21092f;
+    background: #ffffff;
+    border: 1px solid #dfdee0;
+    border-radius: 8px;
+    padding: 7px 10px;
+
+    outline: none;
+
+    &::placeholder {
+      color: #21092f;
+      opacity: 0.3;
+    }
+  }
+
+  &__button {
+    padding: 7px 10px;
+    height: 55px;
+    background: #21092f;
+    border-radius: 8px;
+    border: 1px solid #dfdee0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    color: #fff;
+  }
+}
+
+.error {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: #ff5050;
+  text-align: left;
 }

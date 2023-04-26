@@ -40,7 +40,7 @@ export const Form = () => {
 
   const handleInputValue = (e) => {
     if (e.target.id === 'name') setInputName(e.target.value);
-    if (e.target.id === 'number') {
+    if (e.target.id === 'number' && e.target.value.length <= 19) {
       const rawValue = e.target.value.replace(/ /g, ''); // Remove all spaces from the value
       const formattedValue = rawValue
         .replace(/\d{4}(?=\d)/g, '$& ') // Add a space after every four digits
@@ -70,7 +70,7 @@ export const Form = () => {
           className='form__input'
           type='text'
           placeholder='Full Name'
-          maxLength={40}
+          maxLength={35}
           value={inputName}
           onChange={handleInputValue}
         />
@@ -85,7 +85,6 @@ export const Form = () => {
           className='form__input'
           type='text'
           placeholder='0000 0000 0000 0000'
-          maxLength={19}
           value={inputNumber}
           onChange={handleInputValue}
         />
@@ -94,7 +93,7 @@ export const Form = () => {
       <div className='form__inputs-holder'>
         <div className='form__input-parent'>
           <label className='form__label' htmlFor='input'>
-            MM /
+            MM
           </label>
           <input
             id='month'
@@ -134,11 +133,12 @@ export const Form = () => {
           />
         </div>
       </div>
+
+      {error && <div className='error'>Fill all input</div>}
+
       <button className='form__button' type='submit'>
         SUBMIT
       </button>
-
-      {error && <div>error</div>}
     </form>
   );
 };

@@ -10,7 +10,9 @@ function App() {
     <FormContext
       children={
         <div className='App'>
-          <Card />
+          <div className='card-parent'>
+            <Card />
+          </div>
           <Form />
         </div>
       }
