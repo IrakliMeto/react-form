@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { createFormContext } from '../FormContext';
+import { Done } from './Done';
 
 import './Form.scss';
 
@@ -17,24 +18,27 @@ export const Form = () => {
     setInputYear,
     inputCVC,
     setInputCVC,
+    setIsFormDone,
+    isFormDone,
   } = useContext(createFormContext);
 
   const formSubmit = (e) => {
     e.preventDefault();
-    isError();
+    isFromFill();
   };
 
-  const isError = () => {
+  const isFromFill = () => {
     if (
       inputName.length < 1 ||
       inputNumber.length < 19 ||
-      inputMonth.length < 2 ||
+      inputMonth.length > 2 ||
       inputYear.length < 2 ||
       inputCVC.length < 3
     ) {
       setError(true);
     } else {
       setError(false);
+      setIsFormDone(true);
     }
   };
 
@@ -48,7 +52,11 @@ export const Form = () => {
       setInputNumber(formattedValue);
     }
 
-    if (e.target.id === 'month' && e.target.value.length <= 2)
+    if (
+      e.target.id === 'month' &&
+      e.target.value.length <= 2 &&
+      e.target.value <= 12
+    )
       setInputMonth(e.target.value);
 
     if (e.target.id === 'year' && e.target.value.length <= 2)
@@ -60,85 +68,91 @@ export const Form = () => {
   };
 
   return (
-    <form className='form' onSubmit={formSubmit}>
-      <div className='form__input-parent'>
-        <label className='form__label' htmlFor='input'>
-          CARDHOLDER NAME
-        </label>
-        <input
-          id='name'
-          className='form__input'
-          type='text'
-          placeholder='Full Name'
-          maxLength={35}
-          value={inputName}
-          onChange={handleInputValue}
-        />
-      </div>
+    <>
+      {!isFormDone && (
+        <form className='form' onSubmit={formSubmit}>
+          <div className='form__input-parent'>
+            <label className='form__label' htmlFor='input'>
+              CARDHOLDER NAME
+            </label>
+            <input
+              id='name'
+              className='form__input'
+              type='text'
+              placeholder='Full Name'
+              maxLength={35}
+              value={inputName}
+              onChange={handleInputValue}
+            />
+          </div>
 
-      <div className='form__input-parent'>
-        <label className='form__label' htmlFor='input'>
-          Card Number
-        </label>
-        <input
-          id='number'
-          className='form__input'
-          type='text'
-          placeholder='0000 0000 0000 0000'
-          value={inputNumber}
-          onChange={handleInputValue}
-        />
-      </div>
+          <div className='form__input-parent'>
+            <label className='form__label' htmlFor='input'>
+              Card Number
+            </label>
+            <input
+              id='number'
+              className='form__input'
+              type='text'
+              placeholder='0000 0000 0000 0000'
+              value={inputNumber}
+              onChange={handleInputValue}
+            />
+          </div>
 
-      <div className='form__inputs-holder'>
-        <div className='form__input-parent'>
-          <label className='form__label' htmlFor='input'>
-            MM
-          </label>
-          <input
-            id='month'
-            className='form__input'
-            type='number'
-            placeholder='00'
-            value={inputMonth}
-            onChange={handleInputValue}
-          />
-        </div>
+          <div className='form__inputs-holder'>
+            <div className='form__input-parent'>
+              <label className='form__label' htmlFor='input'>
+                MM
+              </label>
+              <input
+                id='month'
+                className='form__input'
+                type='number'
+                placeholder='00'
+                value={inputMonth}
+                onChange={handleInputValue}
+              />
+            </div>
 
-        <div className='form__input-parent'>
-          <label className='form__label' htmlFor='input'>
-            YY
-          </label>
-          <input
-            id='year'
-            className='form__input'
-            type='number'
-            placeholder='00'
-            value={inputYear}
-            onChange={handleInputValue}
-          />
-        </div>
+            <div className='form__input-parent'>
+              <label className='form__label' htmlFor='input'>
+                YY
+              </label>
+              <input
+                id='year'
+                className='form__input'
+                type='number'
+                placeholder='00'
+                value={inputYear}
+                onChange={handleInputValue}
+              />
+            </div>
 
-        <div className='form__input-parent'>
-          <label className='form__label' htmlFor='input'>
-            CVC
-          </label>
-          <input
-            id='cvc'
-            className='form__input'
-            type='number'
-            value={inputCVC}
-            placeholder='000'
-            onChange={handleInputValue}
-          />
-        </div>
-      </div>
+            <div className='form__input-parent'>
+              <label className='form__label' htmlFor='input'>
+                CVC
+              </label>
+              <input
+                id='cvc'
+                className='form__input'
+                type='number'
+                value={inputCVC}
+                placeholder='000'
+                onChange={handleInputValue}
+              />
+            </div>
+          </div>
 
-      {error && <div className='error'>Fill all input</div>}
+          {error && <div className='error'>Fill all input</div>}
 
-      <button className='form__button' type='submit'>
-        SUBMIT
-      </button>
-    </form>
+          <button className='form__button' type='submit'>
+            Finish
+          </button>
+        </form>
+      )}
+
+      {isFormDone && <Done />}
+    </>
   );
 };

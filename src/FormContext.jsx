@@ -9,6 +9,8 @@ export const FormContext = ({ children }) => {
   const [inputYear, setInputYear] = useState('');
   const [inputCVC, setInputCVC] = useState('');
 
+  const [isFormDone, setIsFormDone] = useState(false);
+
   return (
     <createFormContext.Provider
       value={{
@@ -22,6 +24,8 @@ export const FormContext = ({ children }) => {
         setInputYear,
         inputCVC,
         setInputCVC,
+        isFormDone,
+        setIsFormDone,
       }}
     >
       {children}

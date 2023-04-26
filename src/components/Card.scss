@@ -18,6 +18,11 @@
     line-height: 36px;
     letter-spacing: 3.42222px;
     color: #ffffff;
+
+    @media (max-width: 768px) {
+      font-size: 21px;
+      line-height: 30px;
+    }
   }
 
   &__name {
@@ -26,8 +31,13 @@
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+      line-height: 16px;
+    }
   }
 
   &__date {
@@ -39,6 +49,11 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #ffffff;
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+      line-height: 20px;
+    }
   }
 
   &__box {
@@ -62,5 +77,10 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #fff;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+      line-height: 18px;
+    }
   }
 }

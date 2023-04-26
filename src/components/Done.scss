@@ -1,0 +1,43 @@
+.done {
+  max-width: 500px;
+  padding: 0 20px;
+  margin-top: 50px;
+  width: 100%;
+
+  &__title {
+    margin-top: 30px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    text-align: center;
+    letter-spacing: 3.42222px;
+    color: #21092f;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    margin-top: 15px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #8f8694;
+  }
+
+  &__button {
+    margin-top: 50px;
+    width: 100%;
+    padding: 7px 10px;
+    height: 55px;
+    background: #21092f;
+    border-radius: 8px;
+    border: 1px solid #dfdee0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    color: #fff;
+  }
+}
